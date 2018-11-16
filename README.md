@@ -1,91 +1,115 @@
-FastAdmin是一款基于ThinkPHP5+Bootstrap的极速后台开发框架。
+### 一键生成CRUD,包括控制器、模型、视图、JS、语言包、菜单等
+
+-----
+
+````
+
+//生成fa_test表的CRUD
+php think crud -t test
+//生成fa_test表的CRUD且一键生成菜单
+php think crud -t test -u 1
+//删除fa_test表生成的CRUD
+php think crud -t test -d 1
+ 
+````
 
 
-## **主要特性**
+###  一键生成控制器菜单和规则
 
-* 基于`Auth`验证的权限管理系统
-    * 支持无限级父子级权限继承，父级的管理员可任意增删改子级管理员及权限设置
-    * 支持单管理员多角色
-    * 支持管理子级数据或个人数据
-* 强大的一键生成功能
-    * 一键生成CRUD,包括控制器、模型、视图、JS、语言包、菜单等
-    * 一键压缩打包JS和CSS文件，一键CDN静态资源部署
-    * 一键生成控制器菜单和规则
-    * 一键生成API接口文档
-* 完善的前端功能组件开发
-    * 基于`AdminLTE`二次开发
-    * 基于`Bootstrap`开发，自适应手机、平板、PC
-    * 基于`RequireJS`进行JS模块管理，按需加载
-    * 基于`Less`进行样式开发
-    * 基于`Bower`进行前端组件包管理
-* 强大的插件扩展功能，在线安装卸载升级插件
-* 通用的会员模块和API模块
-* 共用同一账号体系的Web端会员中心权限验证和API接口会员权限验证
-* 二级域名部署支持，同时域名支持绑定到插件
-* 多语言支持，服务端及客户端支持
-* 强大的第三方模块支持([CMS](https://www.fastadmin.net/store/cms.html)、[博客](https://www.fastadmin.net/store/blog.html)、[文档生成](https://www.fastadmin.net/store/docs.html)、[个人免签支付](https://www.fastadmin.net/store/pay.html))
-* 整合第三方短信接口(阿里云、创蓝短信)
-* 无缝整合第三方云存储(七牛、阿里云OSS、又拍云)功能
-* 第三方富文本编辑器支持(Summernote、Tinymce、百度编辑器)
-* 第三方登录(QQ、微信、微博)整合
-* Ucenter整合第三方应用
+---
 
-## **安装使用**
+````
 
-https://doc.fastadmin.net
+//一键生成test控制器的权限菜单
+php think menu -c test
+//一键生成mydir/test控制器的权限菜单
+php think menu -c mydir/test
+//删除test控制器生成的菜单
+php think menu -c test -d 1
+//一键全部重新所有控制器的权限菜单
+php think menu -c all-controller
 
-## **在线演示**
+````
 
-https://demo.fastadmin.net
+###  一键生成API接口文档
 
-用户名：admin
+````
 
-密　码：123456
-
-提　示：演示站数据无法进行修改，请下载源码安装体验全部功能
-
-## **界面截图**
-![控制台](https://gitee.com/uploads/images/2017/0411/113717_e99ff3e7_10933.png "控制台")
-
-## **问题反馈**
-
-在使用中有任何问题，请使用以下联系方式联系我们
-
-交流社区: https://forum.fastadmin.net
-
-QQ群: [636393962](https://jq.qq.com/?_wv=1027&k=487PNBb)(交流群①) [708784003](https://jq.qq.com/?_wv=1027&k=5ObjtwM)(交流群②) [696992864](https://jq.qq.com/?_wv=1027&k=5R2AB00)(高级群,邀请加入)
-
-Email: (karsonzhang#163.com, 把#换成@)
-
-Github: https://github.com/karsonzhang/fastadmin
-
-Gitee: https://gitee.com/karson/fastadmin
-
-## **特别鸣谢**
-
-感谢以下的项目,排名不分先后
-
-ThinkPHP：http://www.thinkphp.cn
-
-AdminLTE：https://adminlte.io
-
-Bootstrap：http://getbootstrap.com
-
-jQuery：http://jquery.com
-
-Bootstrap-table：https://github.com/wenzhixin/bootstrap-table
-
-Nice-validator: https://validator.niceue.com
-
-SelectPage: https://github.com/TerryZ/SelectPage
+/一键生成API文档
+php think api --force=true
+//指定https://www.example.com为API接口请求域名,默认为空
+php think api -u https://www.example.com --force=true
+//输出自定义文件为myapi.html,默认为api.html
+php think api -o myapi.html --force=true
+//修改API模板为mytemplate.html，默认为index.html
+php think api -e mytemplate.html --force=true
+//修改标题为FastAdmin,作者为作者
+php think api -t FastAdmin -a Karson --force=true
+//查看API接口命令行帮助
+php think api -h
 
 
-## **版权信息**
+-u, --url[=URL]            默认API请求URL地址 [default: ""]
+-m, --module[=MODULE]      模块名(admin/index/api) [default: "api"]
+-o, --output[=OUTPUT]      输出文件 [default: "api.html"]
+-e, --template[=TEMPLATE]  模板文件 [default: "index.html"]
+-f, --force[=FORCE]        覆盖模式 [default: false]
+-t, --title[=TITLE]        文档标题 [default: "FastAdmin"]
+-a, --author[=AUTHOR]      文档作者 [default: "FastAdmin"]
+-c, --class[=CLASS]        扩展类 (multiple values allowed)
+-l, --language[=LANGUAGE]  语言 [default: "zh-cn"]
 
-FastAdmin遵循Apache2开源协议发布，并提供免费使用。
+````
 
-本项目包含的第三方源码和二进制文件之版权信息另行标注。
+控制器注释
 
-版权所有Copyright © 2017-2018 by FastAdmin (https://www.fastadmin.net)
+|名称|描述|示例|
+|---|---|---|
+|@ApiSector|API分组名称|(测试分组)|
+|@ApiRoute|API接口URL,此@ApiRoute只是基础URL|	(/api/test)|
+|@ApiInternal|忽略的控制器,表示此控制将不加入API文档|无|
 
-All rights reserved。
+方法注释
+
+
+|名称|	描述|	示例|
+|---|---|---|
+|@ApiTitle|	API接口的标题,为空时将自动匹配注释的文本信息|	(测试标题)|
+|@ApiSummary|	API接口描述	|(测试描述)|
+|@ApiRoute|	API接口地址,为空时将自动计算请求地址	|(/api/test/index)|
+|@ApiMethod|	API接口请求方法,默认为GET	|(POST)|
+|@ApiSector|	API分组,默认按钮控制器或控制器的@ApiSector进行分组|	(测试分组)|
+|@ApiParams|	API请求参数,如果在@ApiRoute中有对应的{@参数名}，将进行替换|	(name="id", type="integer", required=true, description="会员ID")|
+|@ApiHeaders|	API请求传递的Headers信息|	(name=token, type=string, required=true, description="请求的Token")|
+|@ApiReturn|	API返回的结果示例|	({"code":1,"msg":"返回成功"})|
+|@ApiReturnParams|	API返回的结果参数介绍|	(name="code", type="integer", required=true, sample="0")|
+|@ApiReturnHeaders|	API返回的Headers信息	|(name="token", type="integer", required=true, sample="123456")|
+|@ApiInternal|	忽略的方法,表示此方法将不加入文档|	无|
+
+
+### 一键管理插件
+
+````
+
+//创建一个myaddon本地插件，常用于开发自己的插件时使用
+php think addon -a myaddon -c create
+//刷新插件缓存，如果禁用启用了插件，部分文件需要刷新才会生效
+php think addon -a example -c refresh
+//远程安装example插件
+php think addon -a example -c install
+//卸载本地的example插件
+php think addon -a example -c uninstall
+//启用本地的example插件
+php think addon -a example -c enable
+//禁用本地的example插件
+php think addon -a example -c disable
+//升级本地的example插件
+php think addon -a example -c upgrade
+//将本地的example插件打包成zip文件
+php think addon -a example -c package
+
+
+````
+
+
+
